@@ -1,6 +1,6 @@
-import sbt.{Level, Logger}
+import sbt.{Logger, Level}
 
-import scala.collection.mutable.ListBuffer
+import collection.mutable.ListBuffer
 
 class GradingFeedback {
 
@@ -176,8 +176,8 @@ class GradingFeedback {
 
   // def so that we read the right value of vMaxTestScore (initialize modifies it)
   private def allTestsPassedMessage =
-  """Your solution passed all of our tests, congratulations! You obtained the maximal test
-    |score of %.2f.""".stripMargin.format(maxTestScore)
+    """Your solution passed all of our tests, congratulations! You obtained the maximal test
+      |score of %.2f.""".stripMargin.format(maxTestScore)
 
   private val testExecutionFailedMessage =
     """An error occurred while running our tests on your submission.
@@ -187,8 +187,8 @@ class GradingFeedback {
 
   // def so that we read the right value of vMaxStyleScore (initialize modifies it)
   private def perfectStyleMessage =
-  """Our automated style checker tool could not find any issues with your code. You obtained the maximal
-    |style score of %.2f.""".stripMargin.format(maxStyleScore)
+    """Our automated style checker tool could not find any issues with your code. You obtained the maximal
+      |style score of %.2f.""".stripMargin.format(maxStyleScore)
 
   private def styleProblemsMessage(score: Double) =
     """Our automated style checker tool found issues in your code with respect to coding style: it

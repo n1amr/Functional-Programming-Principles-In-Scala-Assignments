@@ -1,8 +1,8 @@
-import java.io.{ByteArrayOutputStream, PrintStream}
-
-import com.typesafe.config.ConfigFactory
-import org.scalastyle._
 import sbt.File
+import java.io.ByteArrayOutputStream
+import java.io.PrintStream
+import org.scalastyle._
+import com.typesafe.config.ConfigFactory
 
 object StyleChecker {
   val maxResult = 100
@@ -11,7 +11,6 @@ object StyleChecker {
     private val messageHelper = new MessageHelper(ConfigFactory.load())
 
     var fileCount: Int = _
-
     override def message(m: Message[T]): Unit = m match {
       case StartWork() =>
       case EndWork() =>
@@ -58,12 +57,11 @@ object StyleChecker {
     val output = new ByteArrayOutputStream()
     val outputResult = new CustomTextOutput(new PrintStream(output)).output(messages)
 
-    val msg =
-      s"""${output.toString}
-         |Processed ${outputResult.files}  file(s)
-         |Found ${outputResult.errors} errors
-         |Found ${outputResult.warnings} warnings
-         |""".stripMargin
+    val msg = s"""${output.toString}
+                 |Processed ${outputResult.files}  file(s)
+                 |Found ${outputResult.errors} errors
+                 |Found ${outputResult.warnings} warnings
+                 |""".stripMargin
 
     (msg, score(outputResult))
   }

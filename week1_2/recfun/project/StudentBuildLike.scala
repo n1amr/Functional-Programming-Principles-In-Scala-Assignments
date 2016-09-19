@@ -1,16 +1,16 @@
-import java.io.{File, FileInputStream, IOException}
-
-import sbt.Keys._
 import sbt._
-import _root_.Settings._
+import Keys._
+import Settings._
+
+import java.io.{File, IOException, FileInputStream}
 import org.apache.commons.codec.binary.Base64
 
 import scala.util.parsing.json.JSON
-import scala.util.{Failure, Success, Try}
 import scalaj.http._
 
-case class MapMapString(val map: Map[String, Map[String, String]])
+import scala.util.{Try, Success, Failure}
 
+case class MapMapString (val map: Map[String, Map[String, String]])
 /**
   * Note: keep this class concrete (i.e., do not convert it to abstract class or trait).
   */
@@ -154,9 +154,9 @@ class StudentBuildLike protected() extends CommonBuild {
       )
       s.log.info("Connecting to Coursera...")
       val response = Try(http.postData(data)
-        .headers(hs)
-        .option(HttpOptions.connTimeout(10000)) // scalaj default timeout is only 100ms, changing that to 10s
-        .asString) // kick off HTTP POST
+                         .headers(hs)
+                         .option(HttpOptions.connTimeout(10000)) // scalaj default timeout is only 100ms, changing that to 10s
+                         .asString) // kick off HTTP POST
       response
     }
 
@@ -236,7 +236,7 @@ class StudentBuildLike protected() extends CommonBuild {
     * DEALING WITH JARS
     */
   def encodeBase64(bytes: Array[Byte]): String =
-  new String(Base64.encodeBase64(bytes))
+    new String(Base64.encodeBase64(bytes))
 
 
   /** *****************************************************************
